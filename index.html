@@ -6,52 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="html/test.css" />
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 </head>
+<style>
+    table {
+        margin: 0 auto;
+    }
+    
+    th {
+        font-size: 12px;
+        width: 70px;
+    }
+    
+    input {
+        width: 70px;
+    }
+    
+    h1 {
+        text-align: center
+    }
+</style>
 
 <body>
-    <p>
-        <a href="#">hello world</a>
-    </p>
-    <div class="bdsharebuttonbox" data-tag="share_1">
-        <a class="bds_mshare" data-cmd="mshare"></a>
-        <a class="bds_qzone" data-cmd="qzone" href="#"></a>
-        <a class="bds_tsina" data-cmd="tsina"></a>
-        <a class="bds_baidu" data-cmd="baidu"></a>
-        <a class="bds_renren" data-cmd="renren"></a>
-        <a class="bds_tqq" data-cmd="tqq"></a>
-        <a class="bds_more" data-cmd="more">更多</a>
-        <a class="bds_count" data-cmd="count"></a>
+    <h1>门徒班算分器</h1>
+    <div data-ng-app="" data-ng-init="cxpx=50;bds=50;dhg=20;sxzc=30;yxjc=50;dj=60;
+   lx=60;bj=30;zm=0;lb=50;xzjh=50;cfj=0;dg=0;xj=0;">
+
+        <!-- table>(th>td*10)+(tr>td*10) -->
+        <table border="1">
+            <tr>
+                <th rowspan="2">姓名</th>
+                <th>出席培训</th>
+                <th>必读书</th>
+                <th>读后感</th>
+                <th>中心实习</th>
+                <th>预习教材</th>
+                <th>读经</th>
+                <th>灵修</th>
+                <th>背经</th>
+                <th>赞美</th>
+                <th>主日敬拜</th>
+                <th>小组聚会</th>
+                <th>传福音</th>
+                <th>祷告</th>
+                <th>相交</th>
+                <th rowspan="2">合计</th>
+            </tr>
+            <tr>
+                <th>50分</td>
+                    <th>50分</td>
+                        <th>20分</td>
+                            <th>30分/次</td>
+                                <th>50分</td>
+                                    <th>10分/天</td>
+                                        <th>10分/天</td>
+                                            <th>30分/句</td>
+                                                <th>5分/时</td>
+                                                    <th>50分</td>
+                                                        <th>50分</th>
+                                                        <th>15分/次</th>
+                                                        <th>10分/时</th>
+                                                        <th>5分/次</th>
+            </tr>
+            <tr>
+                <td><input type="number" ng-model="name"></td>
+                <td><input type="number" ng-model="cxpx" max="50" step="50"></td>
+                <td><input type="number" ng-model="bds" max="50" step="50"></td>
+                <td><input type="number" ng-model="dhg" max="20" step="20"></td>
+                <td><input type="number" ng-model="sxzc" max="30" step="30"></td>
+                <td><input type="number" ng-model="yxjc" max="50" step="50"></td>
+                <td><input type="number" ng-model="dj" max="60" step="10"></td>
+                <td><input type="number" ng-model="lx" max="60" step="10"></td>
+                <td><input type="number" ng-model="bj"></td>
+                <td><input type="number" ng-model="zm"></td>
+                <td><input type="number" ng-model="lb"></td>
+                <td><input type="number" ng-model="xzjh"></td>
+                <td><input type="number" ng-model="cfj" step="15"></td>
+                <td><input type="number" ng-model="dg"></td>
+                <td><input type="number" ng-model="xj" step="5"></td>
+
+                <td><b>总分:</b> {{cxpx+bds+dhg+sxzc+yxjc+dj+lx+bj+zm+lb+xzjh+cfj+gd+xj}}</td>
+            </tr>
+        </table>
     </div>
-    <script>
-        window._bd_share_config = {
-            common: {
-                bdText: '自定义分享内容',
-                bdDesc: '自定义分享摘要',
-                bdUrl: '自定义分享url地址',
-                bdPic: '自定义分享图片'
-            },
-            share: [{
-                "bdSize": 16
-            }],
-            slide: [{
-                bdImg: 0,
-                bdPos: "right",
-                bdTop: 100
-            }],
-            image: [{
-                viewType: 'list',
-                viewPos: 'top',
-                viewColor: 'black',
-                viewSize: '16',
-                viewList: ['qzone', 'tsina', 'huaban', 'tqq', 'renren']
-            }],
-            selectShare: [{
-                "bdselectMiniList": ['qzone', 'tqq', 'kaixin001', 'bdxc', 'tqf']
-            }]
-        }
-        with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
-    </script>
 </body>
 
 </html>
