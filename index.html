@@ -16,7 +16,7 @@
         }
         
         table {
-            width: 100%;
+            width: 80%;
             margin: 0 auto;
         }
         
@@ -162,19 +162,14 @@
         </tr>
     </table>
 
-    <div style="margin:0 auto;">
-        <p>扫码分享到微信</p>
-        <div id="output" style="width:100px;height:100px"></div>
+    <div>
+        <p style="text-algin:center">扫码分享到微信</p>
+        <div id="output" style="margin:0 auto;width:100px;height:100px"></div>
 
     </div>
 
-
-
-
-
     <script>
         jQuery(function() {
-
             jQuery('#output').qrcode("https://paulyoufu.github.io");
 
         })
