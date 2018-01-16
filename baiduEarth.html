@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2xWYDpXRFP1ou5ijzPrg9v761mErx3VU"></script>
+</head>
+
+<body>
+    <div id="map" style="width:800px;height:520px;margin:100px auto;"></div>
+
+
+
+    <script>
+        function initMap() {
+            createMap(); //创建地图
+            setMapEvent(); //设置地图事件
+            addMapControl(); //向地图添加控件
+            addMapOverlay(); //向地图添加覆盖物
+        }
+
+        function createMap() {
+            map = new BMap.Map("map");
+            map.centerAndZoom(new BMap.Point(103.632988, 30.995601), 13);
+        }
+
+        function setMapEvent() {
+            map.enableScrollWheelZoom();
+            map.enableKeyboard();
+            map.enableDragging();
+            map.enableDoubleClickZoom()
+        }
+
+        function addClickHandler(target, window) {
+            target.addEventListener("click", function() {
+                target.openInfoWindow(window);
+            });
+        }
+
+        function addMapOverlay() {
+            var markers = [{
+                content: "台区经理：王 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（）、XX二村#公变（12346789）",
+                title: "王",
+                imageOffset: {
+                    width: 0,
+                    height: 0
+                },
+                position: {
+                    lat: 31.005011,
+                    lng: 103.653397
+                }
+            }, {
+                content: "台区经理：张三 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（123456789）、XX二村#公变（12346789）",
+                title: "张三",
+                imageOffset: {
+                    width: -62,
+                    height: 0
+                },
+                position: {
+                    lat: 31.010706,
+                    lng: 103.623789
+                }
+            }, {
+                content: "台区经理：李四 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（123456789）、XX二村#公变（12346789）",
+                title: "李四",
+                imageOffset: {
+                    width: -116,
+                    height: 0
+                },
+                position: {
+                    lat: 30.986685,
+                    lng: 103.613728
+                }
+            }, {
+                content: "台区经理：王二 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（123456789）、XX二村#公变（12346789）",
+                title: "王二",
+                imageOffset: {
+                    width: -162,
+                    height: 0
+                },
+                position: {
+                    lat: 30.985695,
+                    lng: 103.583258
+                }
+            }, {
+                content: "台区经理：张飞 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（123456789）、XX二村#公变（12346789）",
+                title: "张飞",
+                imageOffset: {
+                    width: -226,
+                    height: 0
+                },
+                position: {
+                    lat: 30.970833,
+                    lng: 103.631838
+                }
+            }, {
+                content: "台区经理：刘备 <br/>  联系电话：13012345678<br/>  管理台区：<br/> XXX#专变（123456789）、XX二村#公变（12346789）",
+                title: "刘备",
+                imageOffset: {
+                    width: -276,
+                    height: 0
+                },
+                position: {
+                    lat: 30.981732,
+                    lng: 103.67007
+                }
+            }, ];
+            for (var index = 0; index < markers.length; index++) {
+                var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
+                var marker = new BMap.Marker(point, {
+                    icon: new BMap.Icon("../img/mapIcon.png", new BMap.Size(38, 25), {
+                        imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
+                    })
+                });
+                var label = new BMap.Label(markers[index].title, {
+                    offset: new BMap.Size(10, -20)
+                });
+                label.setStyle({
+                    color: "#fff",
+                    padding: "3px 15px",
+                    background: "green",
+                    fontSize: "12px",
+                    maxWidth: "none",
+                    border: "1px solid green"
+                });
+
+                var opts = {
+                    // width: 200,
+                    title: markers[index].title,
+                    enableMessage: false
+                };
+
+
+                var infoWindow = new BMap.InfoWindow(markers[index].content, opts);
+                marker.setLabel(label);
+                addClickHandler(marker, infoWindow);
+                map.addOverlay(marker);
+            };
+        }
+        //向地图添加控件
+        function addMapControl() {
+            var navControl = new BMap.NavigationControl({
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                type: BMAP_NAVIGATION_CONTROL_LARGE
+            });
+            map.addControl(navControl);
+        }
+        var map;
+        initMap();
+    </script>
+</body>
+
+</html>
