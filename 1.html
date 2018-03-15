@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+    .header{
+        position: fixed;
+        top:0;
+        left:0;
+        right:0;
+        height: 40px;
+        background: #DADADA;
+    }
+    .body{
+        margin-top: 40px;
+    }
+    .footer{
+        position: fixed;
+        bottom:0;
+        background: #DADADA;
+        width: 100%;
+        margin:0;
+        left:0;
+        right:0;
+    }
+    audio{
+        width: 100%;
+    }
+    img{
+        width: 100%;
+    }
+    .title{
+        text-align: center;
+       
+        margin:0;
+        margin-top:3px;
+    }
+
+    /*  ----tilte--------  */
+    .fl {
+
+         position: absolute;   
+         top:25%;
+         margin-left:6px ;
+         
+    }
+
+    a:link {color: blue; text-decoration:none;}/*  //未访问：蓝色、无下划线 */   
+a:active{color: red; }/*  //激活：红色  */  
+a:visited {color:purple;text-decoration:none;}/*  //已访问：紫色、无下划线    */
+
+    </style>
+    <script>
+    function GetRequest() {  
+  var url = location.search; //获取url中"?"符后的字串
+  console.log(url+"------------------------------------");  
+  var theRequest = new Object();  
+  if (url.indexOf("?") != -1) {  
+   var str = url.substr(url.indexOf("=")+1,url.length);  
+   alert(str+"+++++++++++++++++++-------++++++++++++++++++++"); 
+  // strs = str.split("&");  
+  // for(var i = 0; i < strs.length; i ++) {  
+   //  theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+  // }  
+  }  
+  return theRequest;  
+}  
+GetRequest();
+//alert(JSON.parse(GetRequest().name).list)
+    </script>
+</head>
+<body>
+    <div class="header">
+       <a class="fl glyphicon glyphicon-chevron-left" href="作业.html"></a>  
+      <h3 class="title">浑河堡教会</h3> 
+    </div>
+    <div class="body">
+        <img src="images/bgsj1.jpg" alt="">
+    </div>
+    <div class="footer">
+        <audio src="mp3/宝贵十架.mp3" controls="controls"></audio>
+    </div>
+</body>
+</html>
