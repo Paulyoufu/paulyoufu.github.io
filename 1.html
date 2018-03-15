@@ -54,24 +54,7 @@ a:active{color: red; }/*  //激活：红色  */
 a:visited {color:purple;text-decoration:none;}/*  //已访问：紫色、无下划线    */
 
     </style>
-    <script>
-    function GetRequest() {  
-  var url = location.search; //获取url中"?"符后的字串
-  console.log(url+"------------------------------------");  
-  var theRequest = new Object();  
-  if (url.indexOf("?") != -1) {  
-   var str = url.substr(url.indexOf("=")+1,url.length);  
-   alert(str); 
-  // strs = str.split("&");  
-  // for(var i = 0; i < strs.length; i ++) {  
-   //  theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
-  // }  
-  }  
-  return theRequest;  
-}  
-GetRequest();
-//alert(JSON.parse(GetRequest().name).list)
-    </script>
+   
 </head>
 <body>
     <div class="header">
@@ -79,10 +62,36 @@ GetRequest();
       <h3 class="title">浑河堡教会</h3> 
     </div>
     <div class="body">
-        <img src="images/bgsj1.jpg" alt="">
+        <img id="img"  src="" alt="">
     </div>
-    <div class="footer">
+   <!--  <div class="footer">
         <audio src="mp3/宝贵十架.mp3" controls="controls"></audio>
-    </div>
+    </div> -->
+
+
+    <script>
+        function GetRequest() {  
+      var url = location.search; //获取url中"?"符后的字串
+      console.log(url+"------------------------------------");  
+      var theRequest = new Object();  
+      if (url.indexOf("?") != -1) {  
+       var str = url.substr(url.indexOf("=")+1,url.length);  
+      // alert(str); 
+      // strs = str.split("&");  
+      // for(var i = 0; i < strs.length; i ++) {  
+       //  theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+      // }  
+     
+      document.getElementById("img").src="images/"+str+".png";
+      console.log("images/"+str+".png");
+      }  
+      return theRequest;  
+    }  
+    GetRequest();
+    
+    </script>
+
+
+
 </body>
 </html>
