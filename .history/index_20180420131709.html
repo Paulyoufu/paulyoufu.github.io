@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
-    <title>预备组长班读经表</title>
+    <title>Document</title>
     <style>
         td-hover {
             background-color: beige;
@@ -433,8 +433,8 @@
 
                     </tbody>
                 </table>
-                <h1 class="text-center" style="display:none">门徒班读经表</h1>
-                <table cellpadding="10" border="1" style="display:none">
+                <h1 class="text-center">门徒班读经表</h1>
+                <table cellpadding="10" border="1">
                     <thead>
                         <tr>
                             <th>
@@ -489,28 +489,6 @@
     <script>
         $(function () {
 
-            var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-
-            var name = [1, 2, 3, 4, 5, 6, 7, 8]
-            var info = [1, 2, 3, 4, 5, 6, 7, 8]
-            var time = [1, 2, 3, 4, 5, 6, 7, 8]
-            //增加数据
-            db.transaction(function (tx) {
-
-                //插入的语句是个模板语句 
-                //插入成功的回调就是在控制台上输入一行日志 
-                tx.executeSql('INSERT INTO InfoData VALUES(?,?,?)', [name, info, time], function (tx, rs) {
-                    console.log("成功保存数据!");
-                },
-                    //插入失败的回调就是在控制台上输入一行错误日志 
-                    function (tx, error) {
-                        console.log(error.source + "::" + error.message);
-                    });
-            })
-
-
-
-
             $("td:contains(-)").on("click", function () {
 
                 console.log($(this).text())
@@ -519,7 +497,14 @@
 
         })
 
+        var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique,day, status)');
+            for(var i=1;i<)
+            tx.executeSql('INSERT INTO LOGS (id,day, status) VALUES (1,1, 0)');
+            tx.executeSql('INSERT INTO LOGS (id,day, status) VALUES (2,2,0)');
+        });
 
 
     </script>
