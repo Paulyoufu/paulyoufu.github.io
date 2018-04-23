@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -28,12 +27,8 @@
                 <h4 class="text-aglin:center" style="margin-left:40%;margin-top:15px;">读圣经</h4>
             </nav>
             <div class="row" style="margin-top:50px;">
-                <div class="col-md-8 column">
+                <div class="col-md-12 column">
                     <audio id="ad" autoplay="autoplay" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls"></audio>
-                    <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
-                </div>
-                <div class="col-md-8 column">
-
                 </div>
             </div>
 
@@ -56,7 +51,9 @@
         <!-- mp3播放器 -->
 
         <!-- mp3下载 -->
-
+        <a id="btnDownLoad" href="" class="btn 
+        <p class="navbar-text">Navbar text</p>
+        ">下载</a>
     </div>
 
     <script>
@@ -155,8 +152,7 @@
             srcArr.forEach(function (item, index, input) {
                 console.log(input[index])
             })
-            $("#ad").attr("src", srcArr[0])
-            $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
+            $("#ad").attr("src", srcArr[0].toString())
 
             inx = 1;
             $("#ad").on("ended", function () {
@@ -178,9 +174,6 @@
                     player.pause();/*暂停*/
                 }
             })
-
-
-
         })
 
     </script>

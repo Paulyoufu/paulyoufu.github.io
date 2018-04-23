@@ -28,12 +28,9 @@
                 <h4 class="text-aglin:center" style="margin-left:40%;margin-top:15px;">读圣经</h4>
             </nav>
             <div class="row" style="margin-top:50px;">
-                <div class="col-md-8 column">
+                <div class="col-md-12 column">
                     <audio id="ad" autoplay="autoplay" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls"></audio>
-                    <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
-                </div>
-                <div class="col-md-8 column">
-
+                    <a id="btnDownLoad" class="btn btn-primary">下载</a>
                 </div>
             </div>
 
@@ -155,9 +152,20 @@
             srcArr.forEach(function (item, index, input) {
                 console.log(input[index])
             })
-            $("#ad").attr("src", srcArr[0])
-            $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
+            $("#ad").attr("src", srcArr[0].toString())
 
+            $("#btnDownLoad").click(function () {
+                //  if (src.indexOf(".mp3") > 0) {
+                //  src = $("#ad").attr('src')
+                // alert(src)
+                //  console.log(src + "==================")
+                //  $("#btnDownLoad").attr("href", src)
+                // }
+                //  else {
+                //      alert("不能下载此音频")
+                //  }
+                alert("hello")
+            })
             inx = 1;
             $("#ad").on("ended", function () {
 
@@ -178,9 +186,6 @@
                     player.pause();/*暂停*/
                 }
             })
-
-
-
         })
 
     </script>
