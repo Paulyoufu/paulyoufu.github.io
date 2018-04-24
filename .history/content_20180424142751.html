@@ -111,13 +111,14 @@
                 console.log(bookname)
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
-               
+                console.log("startcharpter---------=" + startCharpter)
+                console.log("endCharpter------------=" + endCharpter)
                 for (key in bsn) {
                     if (bookname == key) {
                         bookname = bookname.replace(key, bsn[key])
-                     
-                        for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
-                         
+                        console.log("1------------" + "startCharpter===" + typeof (startCharpter))
+                        for (var j = startCharpter; j <= endCharpter; j++) {
+                            console.log("11111111111111111111")
                             if (endCharpter == 1) {
                                 srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
                             }

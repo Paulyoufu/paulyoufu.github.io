@@ -111,7 +111,8 @@
                 console.log(bookname)
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
-               
+                console.log("startcharpter---------=" + startCharpter)
+                console.log("endCharpter------------=" + endCharpter)
                 for (key in bsn) {
                     if (bookname == key) {
                         bookname = bookname.replace(key, bsn[key])

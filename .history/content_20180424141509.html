@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -111,13 +112,13 @@
                 console.log(bookname)
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
-               
+                console.log("startcharpter=" + startCharpter)
+                console.log("endCharpter=" + endCharpter)
                 for (key in bsn) {
                     if (bookname == key) {
                         bookname = bookname.replace(key, bsn[key])
-                     
-                        for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
-                         
+
+                        for (var j = startCharpter; j <= endCharpter; j++) {
                             if (endCharpter == 1) {
                                 srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
                             }

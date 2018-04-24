@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -32,8 +33,7 @@
                     <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
                 </div>
                 <div class="col-md-12 column">
-                    当前正在播放 &nbsp;
-                    <span id="bn"></span>
+                    当前正在播放 &nbsp;<span id="bn"></span>
                 </div>
             </div>
 
@@ -86,21 +86,31 @@
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
-                for (var i = 0; i < bnArr.length; i++) {
+                for (var i = 0; i < bnArr.length; i++) {///
+                 //   console.log(i)
                     bookname = bnArr[i].replace(/[^\u4e00-\u9fa5]/gi, "")
+                   // console.log("bookname===----" + i)
                     startCharpter = bnArr[i].replace(bookname, "").split("-")[0]
                     endCharpter = bnArr[i].replace(bookname, "").split("-")[1]
+                   // console.log("startcharpter=" + startCharpter)
+                  //  console.log("endCharpter=" + endCharpter)
+                   // alert(bookname + "第" + startCharpter + "章")
+                   
                     for (key in bsn) {
                         if (bookname == key) {
                             bookname = bookname.replace(key, bsn[key])
-
+                            //  console.log("bookname ======="+bookname)
+                            //  index=startCharpter
                             for (var j = startCharpter; j <= endCharpter; j++) {
-                                if (endCharpter == 1) {
-                                    srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
-                                }
-                                else {
+                                // if (endCharpter == 1) {
+                                //     srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                                //   //  alert(bookname + "第" + startCharpter + "章")
+                                //   //   document.title = bookname + "第" + startCharpter + "章"
+                                // }
+                                // else {
                                     srcArr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
-                                }
+                                     //document.title = bookname + "第" + startCharpter + "章"
+                               // }
                             }
                         }
                     }
@@ -111,38 +121,46 @@
                 console.log(bookname)
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
-               
+                console.log("startcharpter=" + startCharpter)
+                console.log("endCharpter=" + endCharpter)
                 for (key in bsn) {
                     if (bookname == key) {
                         bookname = bookname.replace(key, bsn[key])
-                     
-                        for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
-                         
+                          console.log("bookname ======="+bookname)
+                        //  index=startCharpter
+                        for (var j = startCharpter; j <= endCharpter; j++) {
+                            console.log("111111111111111")
                             if (endCharpter == 1) {
                                 srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                                console.log(srcArr[0]+"-----1111111111---------")
                             }
                             else {
                                 srcArr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
+                                   console.log(srcArr[0] + "-----222222222222---------")
                             }
                         }
                     }
                 }
             }
-            document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-            $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-
-            $("#ad").attr("src", srcArr[0])
+            // document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/","")
+            // $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
+            // alert(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
+            // $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
+                   
                 }
                 /*  inx=inx+1 */
                 $(this).attr("src", srcArr[inx++])
-                ts = srcArr[inx]
-                title = ts.substring(ts.lastIndexOf("rock/") + 5)
-                $("#bn").text(title)
+                console.log("-------------------------------------"+srcArr[inx])
+                ts= srcArr[inx]
+               
+                title= ts.substring(ts.lastIndexOf("rock/")+5)
+                 $("#bn").text(title)
+                console.log("index==========" + title)
                 document.title = title
                 var player = $("#ad")[0]; /*jquery对象转换成js对象*/
                 if (player.paused) { /*如果已经暂停*/
