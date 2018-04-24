@@ -127,18 +127,18 @@
                     console.log("item===========" + item)
                 }
             )
-            inx = 0;
+
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
                 inx = inx + 1
-                $(this).attr("src", srcArr[inx])
-
-                console.log("inx=============" + inx)
-                title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                $("#bn").text(title)
-                document.title = title
+                $(this).attr("src", srcArr[inx], function () {
+                    console.log("inx=============" + inx)
+                    title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+                    $("#bn").text(title)
+                    document.title = title
+                })
 
 
 

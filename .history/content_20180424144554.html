@@ -122,26 +122,18 @@
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
-            srcArr.forEach(
-                function (item) {
-                    console.log("item===========" + item)
-                }
-            )
-            inx = 0;
+            srcArr.forEach
+
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
-                inx = inx + 1
-                $(this).attr("src", srcArr[inx])
-
-                console.log("inx=============" + inx)
-                title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+                /*  inx=inx+1 */
+                $(this).attr("src", srcArr[inx++])
+                ts = srcArr[inx]
+                title = ts.substring(ts.lastIndexOf("rock/") + 5)
                 $("#bn").text(title)
                 document.title = title
-
-
-
                 var player = $("#ad")[0]; /*jquery对象转换成js对象*/
                 if (player.paused) { /*如果已经暂停*/
                     player.play(); /*播放*/
