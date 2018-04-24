@@ -22,12 +22,12 @@
     <div class="container">
 
         <div class="row">
-            <nav id="navTitle" class="navbar navbar-default" role="navigation">
+            <nav class="navbar navbar-default" role="navigation">
                 <a href="index.html" class="pull-left glyphicon glyphicon-chevron-left" style="margin-top:15px;margin-left:20px;"></a>
                 <h4 class="text-aglin:center" style="margin-left:40%;margin-top:15px;">读圣经</h4>
             </nav>
             <div class="row" style="margin-top:50px;">
-                <div class="col-md-12 column" style="text-align: center;">
+                <div class="col-md-12 column">
                     <audio id="ad" autoplay="autoplay" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls"></audio>
                     <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
                 </div>
@@ -83,10 +83,7 @@
         var bnArr = []
         var srcArr = []
         $(document).ready(function () {
-            $("nav").click(function () {
 
-                window.location.href = "index.html";
-            });
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
@@ -102,8 +99,22 @@
                 console.log(bookname)
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
-                bsToEnd(startCharpter, endCharpter)
 
+                for (key in bsn) {
+                    if (bookname == key) {
+                        bookname = bookname.replace(key, bsn[key])
+
+                        for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
+
+                            if (endCharpter == 1) {
+                                srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                            }
+                            else {
+                                srcArr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
+                            }
+                        }
+                    }
+                }
             }
             document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
             $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
@@ -111,13 +122,12 @@
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
-
-
-
-
+            srcArr.forEach(
+                function (item) {
+                    console.log("item===========" + item)
+                }
+            )
             inx = 0;
-
-
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
@@ -129,8 +139,6 @@
                 title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
                 $("#bn").text(title)
                 document.title = title
-
-
 
 
 

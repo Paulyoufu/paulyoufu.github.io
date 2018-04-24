@@ -83,10 +83,7 @@
         var bnArr = []
         var srcArr = []
         $(document).ready(function () {
-            $("nav").click(function () {
 
-                window.location.href = "index.html";
-            });
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
@@ -113,7 +110,9 @@
             inx = 1;
 
 
-
+            $("nav").click(function () {
+                window.location.href = "http://paulyoufu.github.io";
+            });
 
             inx = 0;
 

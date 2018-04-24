@@ -22,7 +22,7 @@
     <div class="container">
 
         <div class="row">
-            <nav id="navTitle" class="navbar navbar-default" role="navigation">
+            <nav class="navbar navbar-default" role="navigation">
                 <a href="index.html" class="pull-left glyphicon glyphicon-chevron-left" style="margin-top:15px;margin-left:20px;"></a>
                 <h4 class="text-aglin:center" style="margin-left:40%;margin-top:15px;">读圣经</h4>
             </nav>
@@ -83,10 +83,7 @@
         var bnArr = []
         var srcArr = []
         $(document).ready(function () {
-            $("nav").click(function () {
 
-                window.location.href = "index.html";
-            });
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
@@ -103,7 +100,7 @@
                 startCharpter = bn.replace(bookname, "").split("-")[0]
                 endCharpter = bn.replace(bookname, "").split("-")[1]
                 bsToEnd(startCharpter, endCharpter)
-
+               
             }
             document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
             $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
@@ -111,13 +108,12 @@
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
-
-
-
-
+            srcArr.forEach(
+                function (item) {
+                    console.log("item===========" + item)
+                }
+            )
             inx = 0;
-
-
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
@@ -129,8 +125,6 @@
                 title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
                 $("#bn").text(title)
                 document.title = title
-
-
 
 
 

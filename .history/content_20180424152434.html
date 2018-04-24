@@ -83,10 +83,7 @@
         var bnArr = []
         var srcArr = []
         $(document).ready(function () {
-            $("nav").click(function () {
 
-                window.location.href = "index.html";
-            });
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
@@ -111,10 +108,16 @@
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
-
-
-
-
+            srcArr.forEach(
+                function (item) {
+                    console.log("item===========" + item)
+                }
+            )
+            
+             $("body").click(function () {
+                alert("12345678io")
+            });
+            
             inx = 0;
 
 
@@ -130,7 +133,7 @@
                 $("#bn").text(title)
                 document.title = title
 
-
+               
 
 
 

@@ -83,10 +83,7 @@
         var bnArr = []
         var srcArr = []
         $(document).ready(function () {
-            $("nav").click(function () {
 
-                window.location.href = "index.html";
-            });
             /* 经文加载 */
             if (bn.indexOf(";") > 0) {
                 bnArr = bn.split(';')
@@ -111,13 +108,12 @@
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
             inx = 1;
-
-
-
-
+            srcArr.forEach(
+                function (item) {
+                    console.log("item===========" + item)
+                }
+            )
             inx = 0;
-
-
             $("#ad").on("ended", function () {
                 if (inx >= srcArr.length) {
                     inx = 0
@@ -132,7 +128,10 @@
 
 
 
-
+                $("nav").click(function () {
+                    // location.href = "index.html"
+                    alert("12345678io")
+                })
 
                 var player = $("#ad")[0]; /*jquery对象转换成js对象*/
                 if (player.paused) { /*如果已经暂停*/
