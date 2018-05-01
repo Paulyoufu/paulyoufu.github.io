@@ -28,7 +28,7 @@
             </nav>
             <div class="row" style="margin-top:50px;">
                 <div class="col-md-12 column" style="text-align: center;">
-                    <audio id="ad" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls" autoplay="autoplay"></audio>
+                    <audio id="ad" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls"></audio>
                     <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
                 </div>
                 <div class="col-md-12 column" style="text-align: center;margin-top: 30px;">
@@ -100,10 +100,9 @@
                 bnArr = bn.split(';')
                 for (var i = 0; i < bnArr.length; i++) {
                     if (bnArr[i].indexOf(":") > 0) {
-
-                        // bnArr[i] = bnArr[i].replace(":", "章")
                         console.log(bnArr[i])
-                        srcArr.push("http://files.faith.im/bible/" + bnArr[i].replace(":", "章") + ".mp3")
+                        bnArr[i] = bnArr[i].replace(":", "章")
+                        srcArr.push(url + bnArr[i] + ".mp3")
                     }
                     bookname = bnArr[i].replace(/[^\u4e00-\u9fa5]/gi, "")
                     startCharpter = bnArr[i].replace(bookname, "").split("-")[0]
@@ -112,8 +111,7 @@
                     src = bsToEnd(startCharpter, endCharpter)
                     src.forEach(function (item, index) {
                         //  console.log(item)
-                        if (item.indexOf("诗篇第NaN章") < 1) { srcArr.push(item) }
-
+                        srcArr.push(item)
                     })
 
                     console.log("srcArr==========" + srcArr)
@@ -127,18 +125,8 @@
                 bsToEnd(startCharpter, endCharpter)
 
             }
-
-            if (srcArr[0].indexOf("faith.im") > 0) {
-                document.title = srcArr[0].replace("http://files.faith.im/bible/", "")
-                $("#bn").text(srcArr[0].replace("http://files.faith.im/bible/", ""))
-            }
-            if (srcArr[0].indexOf("biblevoice") > 0) {
-                document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-            }
-
-
-
+            document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+            $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
 
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
@@ -148,48 +136,28 @@
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
-                if (srcArr[inx].indexOf("faith.im") > 0) {
-
-                    title = srcArr[inx].replace("http://files.faith.im/bible/", "")
-                    $("#bn").text(title)
-                    document.title = title
-                }
-                else {
-
-                    title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                    console.log("title=" + title)
-                    $("#bn").text(srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-                    document.title = title
-                }
-
-
+                title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+                $("#bn").text(title)
+                document.title = title
                 $(this).attr("src", srcArr[inx++])
-                var player = $("#ad")[0]; /*jquery对象转换成js对象*/
-                if (player.paused) { /*如果已经暂停*/
-                    player.play(); /*播放*/
-                } else {
-                    player.pause();/*暂停*/
-                }
             })
 
 
-
+            var player = $("#ad")[0]; /*jquery对象转换成js对象*/
+            if (player.paused) { /*如果已经暂停*/
+                player.play(); /*播放*/
+            } else {
+                player.pause();/*暂停*/
+            }
         })
 
-        function isRex(resStr, str) {
-            var patt1 = new RegExp(resStr);
 
-            var result = patt1.test(str);
-            if (result) {
-                return str.replace(
-                    resStr, ""
-                )
-            }
+
+
+
+        function oterhFun(b, c, ss, es) {
+
         }
-
-
-
-
 
 
         function bsToEnd(startCharpter, endCharpter) {

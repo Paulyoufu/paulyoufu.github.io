@@ -112,8 +112,8 @@
                     src = bsToEnd(startCharpter, endCharpter)
                     src.forEach(function (item, index) {
                         //  console.log(item)
-                        if (item.indexOf("诗篇第NaN章") < 1) { srcArr.push(item) }
 
+                        srcArr.push(item)
                     })
 
                     console.log("srcArr==========" + srcArr)
@@ -128,11 +128,11 @@
 
             }
 
-            if (srcArr[0].indexOf("faith.im") > 0) {
+            if (srcArr[0].indexOf("http://files.faith.im/bible/") > 0) {
                 document.title = srcArr[0].replace("http://files.faith.im/bible/", "")
                 $("#bn").text(srcArr[0].replace("http://files.faith.im/bible/", ""))
             }
-            if (srcArr[0].indexOf("biblevoice") > 0) {
+            else {
                 document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
                 $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
             }
@@ -148,21 +148,17 @@
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
-                if (srcArr[inx].indexOf("faith.im") > 0) {
+                if (srcArr[0].indexOf("http://files.faith.im/bible/") > 0) {
 
                     title = srcArr[inx].replace("http://files.faith.im/bible/", "")
-                    $("#bn").text(title)
-                    document.title = title
                 }
                 else {
 
                     title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                    console.log("title=" + title)
-                    $("#bn").text(srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-                    document.title = title
                 }
 
-
+                $("#bn").text(title)
+                document.title = title
                 $(this).attr("src", srcArr[inx++])
                 var player = $("#ad")[0]; /*jquery对象转换成js对象*/
                 if (player.paused) { /*如果已经暂停*/
@@ -197,16 +193,18 @@
             for (key in bsn) {
                 if (bookname == key) {
                     bookname = bookname.replace(key, bsn[key])
-                    for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
-                        if (endCharpter == 1) {
-                            arr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                    if (isNaN(bookname)) {
+                        for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
+                            if (endCharpter == 1) {
+                                arr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                            }
+                            else {
+                                arr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
+                                // console.log(url + bookname + "第" + (startCharpter++) + "章.mp3")
+                            }
                         }
-                        else {
-                            arr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
-                            // console.log(url + bookname + "第" + (startCharpter++) + "章.mp3")
-                        }
+                        return arr;
                     }
-                    return arr;
                 }
             }
 

@@ -129,10 +129,11 @@
             }
 
             if (srcArr[0].indexOf("faith.im") > 0) {
+
                 document.title = srcArr[0].replace("http://files.faith.im/bible/", "")
                 $("#bn").text(srcArr[0].replace("http://files.faith.im/bible/", ""))
             }
-            if (srcArr[0].indexOf("biblevoice") > 0) {
+            else {
                 document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
                 $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
             }
@@ -148,18 +149,22 @@
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
-                if (srcArr[inx].indexOf("faith.im") > 0) {
+                if (srcArr[0].indexOf("faith.im") > 0) {
 
                     title = srcArr[inx].replace("http://files.faith.im/bible/", "")
                     $("#bn").text(title)
                     document.title = title
                 }
                 else {
+                    console.log("---------------111111111--------")
+                }
+                if (srcArr[0].indexOf("biblevoice") > 0) {
 
                     title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
                     console.log("title=" + title)
-                    $("#bn").text(srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
+                    $("#bn").text(title)
                     document.title = title
+                    console.log("--------22222222--------------")
                 }
 
 

@@ -28,7 +28,7 @@
             </nav>
             <div class="row" style="margin-top:50px;">
                 <div class="col-md-12 column" style="text-align: center;">
-                    <audio id="ad" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls" autoplay="autoplay"></audio>
+                    <audio id="ad" autoplay="autoplay" src="http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/创世记第1章.mp3" controls="controls"></audio>
                     <a id="btnDownLoad" class="btn btn-primary" style="margin-top: -25px;">下载</a>
                 </div>
                 <div class="col-md-12 column" style="text-align: center;margin-top: 30px;">
@@ -69,11 +69,9 @@
         var other = "";
         var otherCharpter = "";
         var sectionArr = [];
-        var otherSection = [];
         var section = "";
         var startSection = "";
         var endSection = "";
-        var conArr = [];
         var bsn = {
             "创": "创世记", "出": "出埃及记", "利": "利未记", "民": "民数记", "申": "申命记", "书": "约书亚记",
             "士": "士师记", "得": "路得记", "撒上": "撒母耳记上", "撒下": "撒母耳记下", "王上": "列王纪上", "王下": "列王纪下", "代上": "历代志上", "代下": "历代志下", "拉": "以斯拉记", "尼": "尼希米记",
@@ -90,7 +88,6 @@
         var bnArr = [];
         var srcArr = [];
         $(document).ready(function () {
-            let src = []
             $("nav").click(function () {
 
                 window.location.href = "index.html";
@@ -100,23 +97,56 @@
                 bnArr = bn.split(';')
                 for (var i = 0; i < bnArr.length; i++) {
                     if (bnArr[i].indexOf(":") > 0) {
+                        other = bnArr[i]
+                        section = other.split('-')
+                        section.forEach(function (item, index) {
+                            // console.log(item)
+                            var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+                            if (reg.test(item)) {
 
-                        // bnArr[i] = bnArr[i].replace(":", "章")
-                        console.log(bnArr[i])
-                        srcArr.push("http://files.faith.im/bible/" + bnArr[i].replace(":", "章") + ".mp3")
+                                regIsChn = /[\u4e00-\u9fa5]/g;
+                                otherBookname = item.match(regIsChn).join("");
+                                // console.log(otherBookname)
+                                item = item.replace(otherBookname, "")
+
+                                startSection = item.split(":")[1]
+                                otherCharpter = item.split(":")[0]
+                            }
+                            else {
+
+                                endSection = item.split(":")[1]
+
+                            }
+
+
+                        })
+                        for (key in bsn) {
+                            if (otherBookname == key) {
+                                otherBookname = otherBookname.replace(key, bsn[key])
+                                for (var j = parseInt(startSection); j <= parseInt(endSection); j++) {
+                                    if (es == 1) {
+                                        srcArr.push(url + otherBookname + "第" + otherCharpter + "章" + startSection + "节.mp3")
+                                        //  console.log(url + b + "第" + c + "章" + ss + "节.mp3")
+                                    }
+                                    else {
+                                        // console.log(url + b + "第" + c + "章" + ss + "节.mp3")
+                                        srcArr.push(url + otherBookname + "第" + otherCharpter + "章" + (startSection++) + "节.mp3")
+
+                                    }
+                                }
+                            }
+                        }
+                        //  oterhFun(otherBookname, otherCharpter, startSection, endSection)
+
+                        console.log("--------------------------------" + srcArr)
                     }
                     bookname = bnArr[i].replace(/[^\u4e00-\u9fa5]/gi, "")
                     startCharpter = bnArr[i].replace(bookname, "").split("-")[0]
                     endCharpter = bnArr[i].replace(bookname, "").split("-")[1]
-
-                    src = bsToEnd(startCharpter, endCharpter)
-                    src.forEach(function (item, index) {
-                        //  console.log(item)
-                        if (item.indexOf("诗篇第NaN章") < 1) { srcArr.push(item) }
-
+                    bsToEnd(startCharpter, endCharpter)
+                    srcArr.forEach(function (index, item) {
+                        console.log("srcArr=" + index)
                     })
-
-                    console.log("srcArr==========" + srcArr)
                 }
             }
             else {
@@ -127,18 +157,8 @@
                 bsToEnd(startCharpter, endCharpter)
 
             }
-
-            if (srcArr[0].indexOf("faith.im") > 0) {
-                document.title = srcArr[0].replace("http://files.faith.im/bible/", "")
-                $("#bn").text(srcArr[0].replace("http://files.faith.im/bible/", ""))
-            }
-            if (srcArr[0].indexOf("biblevoice") > 0) {
-                document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-            }
-
-
-
+            document.title = srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+            $("#bn").text(srcArr[0].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
 
             $("#ad").attr("src", srcArr[0])
             $("#btnDownLoad").click(function () { $("#btnDownLoad").attr("href", $("#ad").attr("src")) })
@@ -148,72 +168,47 @@
                 if (inx >= srcArr.length) {
                     inx = 0
                 }
-                if (srcArr[inx].indexOf("faith.im") > 0) {
-
-                    title = srcArr[inx].replace("http://files.faith.im/bible/", "")
-                    $("#bn").text(title)
-                    document.title = title
-                }
-                else {
-
-                    title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
-                    console.log("title=" + title)
-                    $("#bn").text(srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", ""))
-                    document.title = title
-                }
-
-
+                title = srcArr[inx].replace("http://biblevoice.oss-cn-hangzhou.aliyuncs.com/rock/", "")
+                $("#bn").text(title)
+                document.title = title
                 $(this).attr("src", srcArr[inx++])
-                var player = $("#ad")[0]; /*jquery对象转换成js对象*/
-                if (player.paused) { /*如果已经暂停*/
-                    player.play(); /*播放*/
-                } else {
-                    player.pause();/*暂停*/
-                }
             })
 
 
-
+            var player = $("#ad")[0]; /*jquery对象转换成js对象*/
+            if (player.paused) { /*如果已经暂停*/
+                player.play(); /*播放*/
+            } else {
+                player.pause();/*暂停*/
+            }
         })
 
-        function isRex(resStr, str) {
-            var patt1 = new RegExp(resStr);
 
-            var result = patt1.test(str);
-            if (result) {
-                return str.replace(
-                    resStr, ""
-                )
-            }
+
+
+
+        function oterhFun(b, c, ss, es) {
+
         }
 
 
-
-
-
-
         function bsToEnd(startCharpter, endCharpter) {
-            let arr = []
+
             for (key in bsn) {
                 if (bookname == key) {
                     bookname = bookname.replace(key, bsn[key])
                     for (var j = parseInt(startCharpter); j <= parseInt(endCharpter); j++) {
                         if (endCharpter == 1) {
-                            arr.push(url + bookname + "第" + startCharpter + "章.mp3")
+                            srcArr.push(url + bookname + "第" + startCharpter + "章.mp3")
                         }
                         else {
-                            arr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
+                            srcArr.push(url + bookname + "第" + (startCharpter++) + "章.mp3")
                             // console.log(url + bookname + "第" + (startCharpter++) + "章.mp3")
                         }
                     }
-                    return arr;
                 }
             }
-
         }
-
-
-
     </script>
 </body>
 
