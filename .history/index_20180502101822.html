@@ -9,33 +9,22 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
+        thead>th {
+            height: 30px;
+            text-align: center;
+            background-color: #B8E4FF
+        }
+
         td:nth-last-child(1) {
             cursor: pointer;
         }
 
-        thead th {
-            height: 50px;
-            font-size: 20px;
-            text-align: center;
-            background-color: #0165FF
-        }
-
-        tr:nth-child(odd) {
+        td:nth-child(odd) {
             background: white;
         }
 
-        td:gt(0) {
-            font-size: 40px;
-        }
-
-        tbody th {
-            background-color: #96BCE1;
-            font-size: 30px;
-        }
-
-        tr:nth-child(even) {
+        td:nth-child(even) {
             background: #B8E4FF;
-            font-size: 20px;
         }
     </style>
     <title>读经表</title>
@@ -93,13 +82,13 @@
                                 <table id="talbeMt" cellpadding="10" border="1">
                                     <thead>
                                         <tr>
-                                            <th class="thead">
+                                            <th>
                                                 周次
                                             </th>
-                                            <th class="thead">
+                                            <th>
                                                 星期
                                             </th>
-                                            <th class="thead">
+                                            <th>
                                                 圣经
                                             </th>
 

@@ -13,29 +13,12 @@
             cursor: pointer;
         }
 
-        thead th {
-            height: 50px;
-            font-size: 20px;
-            text-align: center;
-            background-color: #0165FF
+        tr {
+            background-color: expression((this.sectionRowIndex%2==0)?"red":"blue")
         }
 
-        tr:nth-child(odd) {
-            background: white;
-        }
-
-        td:gt(0) {
-            font-size: 40px;
-        }
-
-        tbody th {
-            background-color: #96BCE1;
-            font-size: 30px;
-        }
-
-        tr:nth-child(even) {
-            background: #B8E4FF;
-            font-size: 20px;
+        td {
+            background-color: expression((this.cellIndex%2==0)?"":((this.parentElement.sectionRowIndex%2==0)?"green":"yellow"))
         }
     </style>
     <title>读经表</title>
@@ -49,7 +32,11 @@
 
         }
 
-
+        thead>th {
+            height: 30px;
+            text-align: center;
+            background-color: #DDFFFF
+        }
 
         td {
             height: 30px;
@@ -93,13 +80,13 @@
                                 <table id="talbeMt" cellpadding="10" border="1">
                                     <thead>
                                         <tr>
-                                            <th class="thead">
+                                            <th>
                                                 周次
                                             </th>
-                                            <th class="thead">
+                                            <th>
                                                 星期
                                             </th>
-                                            <th class="thead">
+                                            <th>
                                                 圣经
                                             </th>
 
@@ -868,7 +855,7 @@
             })
         })
     </script>
-    <!-- <script type="text/javascript"> 
+    <script type="text/javascript"> 
         $(document).ready(function () {
             odd = { "background": "#EDA", "color": "#1E1E1E" };//奇数样式 
             even = { "background": "#2DA", "color": "#875" };//偶数样式 
@@ -884,7 +871,7 @@
                     $(this).css(even);
             });
         } 
-    </script> -->
+    </script>
 
 
 </body>
