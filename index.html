@@ -9,6 +9,40 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
+      #cls {
+        border: 5px solid;
+        width: 100%;
+        border-color: black;
+    }
+
+  #cls   td {
+        height: 40px;
+        text-align: center;
+    }
+
+    #cls thead th {
+        background-color: #9999FF;
+        height: 50px;
+        font-size: 30px;
+        color: white;
+    }
+
+   #cls th {
+      
+        font-size: 21px;
+        background-color: #BFFFEF;
+    }
+
+    #cls  tr:nth-child(odd) {
+        background-color: #fedbff;
+    }
+
+  #cls   tr:nth-child(even) {
+        background-color: #fffbf0;
+
+    }
+    </style>
+    <style>
         td:nth-last-child(1) {
             cursor: pointer;
         }
@@ -85,7 +119,7 @@
                         <div class="tab-pane" id="panel">
                             <p>
                                 <h1 class="text-center">新生活班</h1>
-                                <table border="1">
+                                <table id="cls" border="1">
                                     <thead>
                                         <tr>
                                             <th>周次</th>
